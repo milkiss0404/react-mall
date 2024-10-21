@@ -19,7 +19,7 @@ const todoRouter = () => {
 
     {
       path: "",
-      element: <Navigate replace={true} to={"lisssdsat"}></Navigate>,
+      element: <Navigate replace={true} to={"list"}></Navigate>,
     },
     {
       path: "read/:tno",

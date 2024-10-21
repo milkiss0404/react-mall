@@ -20,7 +20,7 @@ function ReadComponent({ tno }) {
       console.log(data);
       setTodo(data);
     });
-  }, [tno]);
+  }, [tno]); // 여기 대괄호 자리 값이 변경되면 useEffect실행됨
 
   return (
     <div className="border-2 border-sky200 mt-1000 m-2 p-4">
@@ -40,7 +40,7 @@ function ReadComponent({ tno }) {
         </button>
         <button
           type="button"
-          className="rounded p-4 m-2 text-xl w-32 text-white bg-red-500"
+          className="rounded p-4 m-2 text-xl w-32 text-white bg-red-50"
           onClick={() => moveToModify(todo.tno)}
         >
           modify

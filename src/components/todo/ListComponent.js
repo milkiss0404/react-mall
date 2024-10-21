@@ -25,7 +25,7 @@ function ListComponent() {
       console.log(data);
       setServerData(data);
     });
-  }, [page, size, refresh]);
+  }, [page, size, refresh]); //하나라도변경되면 실행됨
 
   return (
     <div className="border-2 border-blue-100 mt-10 mr-2 ml-2">
