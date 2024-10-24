@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SecondMenu from "./SecondMenu";
 
 const BasicMenu = () => {
   return (
@@ -19,7 +20,7 @@ const BasicMenu = () => {
           </li>
         </ul>
       </div>
-      <div className="w-1/5 flex justify-end bg-white p-4 font-medium">
+      <div className="w-1/5 flex justify-end bg-black p-4 font-medium">
         <div className="text-white text-sm m-1 rounded"> Login </div>
       </div>
     </nav>

@@ -58,14 +58,14 @@ const useCustomMove = () => {
     });
   };
 
-  const moveToRoad = (num) => {
+  const moveToRead = (num) => {
     navigate({
       pathname: `../read/${num}`,
       search: queryDefault,
     });
   };
 
-  return { moveToList, moveToModify, moveToRoad, page, size, refresh }; //컴포넌트  x  이건 커스텀 훅 이고 반환하는건 객체
+  return { moveToList, moveToModify, moveToRead, page, size, refresh }; //컴포넌트  x  이건 커스텀 훅 이고 반환하는건 객체
 };
 
 export default useCustomMove;
