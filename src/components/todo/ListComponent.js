@@ -1,42 +1,52 @@
-import React, { useEffect, useState } from "react";
-import useCustomMove from "../../hooks/useCustomMove";
+import { useEffect, useState } from "react";
 import { getList } from "../../api/todoApi";
+import useCustomMove from "../../hooks/useCustomMove";
 import PageComponent from "../common/PageComponent";
-//api스팩 ㅂ맞춰준거임
+
 const initState = {
   dtoList: [],
   pageNumList: [],
   pageRequestDTO: null,
   prev: false,
   next: false,
-  totalCount: 0,
+  totoalCount: 0,
   prevPage: 0,
   nextPage: 0,
   totalPage: 0,
-  current: 0,
-};
+  current: 0
+}
 
-function ListComponent() {
-  const { page, size, moveToList, refresh, moveToRoad } = useCustomMove();
-  const [serverData, setServerData] = useState(initState);
+const ListComponent = () => {
+
+  const { page, size, refresh, moveToList, moveToRead } = useCustomMove()//refresh
+
+  //serverData는 나중에 사용
+  const [serverData, setServerData] = useState(initState)
+
 
   useEffect(() => {
-    getList({ page, size, refresh }).then((data) => {
-      console.log(data);
-      setServerData(data);
-    });
-  }, [page, size, refresh]); //하나라도변경되면 실행됨
+
+    getList({ page, size }).then(data => {
+      console.log(data)
+      setServerData(data)
+    })
+
+  }, [page, size, refresh])
 
   return (
     <div className="border-2 border-blue-100 mt-10 mr-2 ml-2">
-      <div className="flexm flex-wrap mx-auto justify-center p-6">
-        {serverData.dtoList.map((todo) => (
+
+      <div className="flex flex-wrap mx-auto justify-center p-6">
+
+        {serverData.dtoList.map(todo =>
+
           <div
             key={todo.tno}
-            className="w-full min-w-[400px] p-2 m-2 rounded shadow-md"
-            onClick={() => moveToRoad(todo.tno)}
+            className="w-full min-w-[400px]  p-2 m-2 rounded shadow-md"
+            onClick={() => moveToRead(todo.tno)} //이벤트 처리 추가 
           >
-            <div className="flex">
+
+            <div className="flex ">
               <div className="font-extrabold text-2xl p-2 w-1/12">
                 {todo.tno}
               </div>
@@ -48,14 +58,15 @@ function ListComponent() {
               </div>
             </div>
           </div>
-        ))}
+        )}
       </div>
-      <PageComponent
-        serverData={serverData}
-        movePage={moveToList}
-      ></PageComponent>
+
+      <PageComponent serverData={serverData} movePage={moveToList}></PageComponent>
+
     </div>
+
   );
+
 }
 
 export default ListComponent;

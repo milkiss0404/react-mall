@@ -58,7 +58,7 @@ export default function AddComponent() {
         //fetching값은 버튼을 누른이상 true이고  then -> false로 ㅇㅇ 
         postAdd(formData).then(data=>{
             setFetching(false)
-            setResult(data.RESULT)
+            setResult(data.result)
         })
 
     }
