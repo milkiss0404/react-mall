@@ -82,7 +82,7 @@ export default function ReadComponent({ pno }) {
 
 
         <div className='flex justify-end p-4'>
-          <button type='button' className='rounded p-4 m-2 text-xl w-32 bg-red-500 text-white'
+          <button type='button' className= 'rounded p-4 m-2 text-xl w-32 text-white bg-'
             onClick={() => moveToModify(pno)} >Modify</button>
   
      

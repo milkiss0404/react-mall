@@ -19,3 +19,8 @@ export const LoadingText = styled.div`
 font: 1rem 'Noto Sans KR';
 text-align: center;
 `;
+
+export const navigator = styled.nav`
+display: flex;
+
+`
