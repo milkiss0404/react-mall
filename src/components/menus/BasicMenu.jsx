@@ -2,8 +2,14 @@ import { Link } from "react-router-dom";
 import SecondMenu from "./SecondMenu";
 import { useState } from "react";
 import ThirdMenu from "./ThirdMenu";
+import { useSelector } from "react-redux";
 
 const BasicMenu = () => {
+
+  const loginState = useSelector(state=> state.loginSlice)
+
+
+
   const [menuOpen, setMenuOpen] = useState({
     button1: false,
     button2: false,
@@ -16,6 +22,7 @@ const BasicMenu = () => {
   const handleMouseOut = (button) => {
     setMenuOpen((prev) => ({ ...prev, [button]: false }));
   };
+
 
   return (
     <>
@@ -38,11 +45,12 @@ const BasicMenu = () => {
               <Link to={"/about"}>about</Link>
             </li>
 
+            {loginState.email?
+            <>
             <li
               className={`pr-6 text-2xl`}
               onMouseEnter={() => handleMouseOver("button2")}
-              onMouseOut={() => handleMouseOut("button2")}
-            >
+              onMouseOut={() => handleMouseOut("button2")}>
               <Link to={"/todo"}>todo</Link>
             </li>
 
@@ -52,15 +60,24 @@ const BasicMenu = () => {
               onMouseOut={() => handleMouseOut("button2")}
             >
               <Link to={"/products"}>products</Link>
-            </li>
+                </li>
+              </>:
+              <></>
 
+            }
           
          
           </ul>
         </div>
-        <div className="w-1/10">
-          <Link to={"/login"} className="text-2xl text-white font-bold flex p-5">login</Link>
-        </div>
+        {!loginState.email ?
+          <div className="w-1/10">
+            <Link to={"/member/login"} className="text-2xl text-white font-bold flex p-5">login</Link>
+          </div>
+          :
+          <div className="w-1/10">
+            <Link to={"/member/logout"} className="text-2xl text-white font-bold flex p-5">logout</Link>
+          </div>
+        }
       </nav>
 
       {/* 애니메이션이 적용된 SecondMenu */}

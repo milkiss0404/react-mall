@@ -22,5 +22,4 @@ text-align: center;
 
 export const navigator = styled.nav`
 display: flex;
-
 `
