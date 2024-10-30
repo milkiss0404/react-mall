@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { loginPostAsync } from '../../slices/LoginSlice'
 import { useNavigate } from 'react-router-dom'
 import useCustomLogin from '../../hooks/useCustomLogin'
+import KakaoLoginCompnent from './KakaoLoginCompnent'
 
 const initState = {
     email: '',
@@ -63,6 +64,7 @@ export default function LoginComponent(props) {
                     </div>
                 </div>
             </div>
+            <KakaoLoginCompnent/>
         </div>
     );
 }
