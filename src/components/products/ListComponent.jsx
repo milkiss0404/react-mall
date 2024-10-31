@@ -68,7 +68,7 @@ const ListComponent = () => {
 
                                 <div className="w-full overflow-hidden ">
                                     <img alt="product"
-                                        className="m-auto rounded-md w-60"
+                                        className="m-auto rounded-md w-20"
                                         src={`${host}/api/products/view/s_${product.uploadedFileNames[0]}`} />
                                 </div>
 

@@ -18,7 +18,8 @@ const memberRouter = () => {
         {
             path: 'kakao',
             element: <Suspense fallback={Loading}><KakaoRedirect /></Suspense>
-        }
+        },
+   
     ]
 }
 export default memberRouter

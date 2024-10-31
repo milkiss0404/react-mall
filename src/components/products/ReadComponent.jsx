@@ -70,19 +70,19 @@ export default function ReadComponent({ pno }) {
           </div>
         </div>
       </div>
-
+``
       <div className='w-full justify-center flex flex-col m-auto items-center'>
         {product.uploadedFileNames.map((imgFile, i) =>   ///map메서드의 첫번쨰 인자는 배열의 각 요소(값)을 나타냄 , 두번쨰인자는 순서를 나타냄
           <img
             alt="product"
             key={i}
-            className='p-4 w-1/2'
+            className='p-4 w-28'
             src={`${host}/api/products/view/${imgFile}`} />
         )}
 
 
         <div className='flex justify-end p-4'>
-          <button type='button' className= 'rounded p-4 m-2 text-xl w-32 text-white bg-'
+          <button type='button' className= 'rounded p-4 m-2 text-xl w-32 text-white bg-red-600'
             onClick={() => moveToModify(pno)} >Modify</button>
   
      

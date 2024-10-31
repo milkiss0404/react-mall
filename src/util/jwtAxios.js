@@ -57,17 +57,17 @@ const requestFail = (err) => {
 const beforeRes = async (res) => {
     console.log("before return response...........")
 
+
     //console.log(res)
 
     //'ERROR_ACCESS_TOKEN'
     const data = res.data
 
-    if (data && data.error === 'ERROR_ACCESS_TOKEN') {
+    if (data && data.error === 'ERROR_ACCESS_TOKEN') {  //access 토큰이 만료되면 ! access토큰과 refresh토큰을 같이보내주세요
 
         const memberCookieValue = getCookie("member")
 
         const result = await refreshJWT(memberCookieValue.accessToken, memberCookieValue.refreshToken)
-        console.log("refreshJWT RESULT", result)
 
         memberCookieValue.accessToken = result.accessToken
         memberCookieValue.refreshToken = result.refreshToken
@@ -87,7 +87,7 @@ const beforeRes = async (res) => {
 }
 
 
-//fail response
+//fail response  백엔드에서 서버오류라고 상태코드를 보내주진 않음 오류 메시지는 보내줌
 const responseFail = (err) => {
     console.log("response fail error.............")
     return Promise.reject(err);

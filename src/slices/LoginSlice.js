@@ -22,7 +22,10 @@ const loginSlice = createSlice({
         login: (state, action) => {
             console.log("login.........", action)
             console.log(action.payload)
-            return {email:action.payload.email}
+
+            setCookie("member",JSON.stringify(action.payload),1)
+
+            return action.payload
 
         },
         logout: () => {
