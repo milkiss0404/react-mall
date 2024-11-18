@@ -26,9 +26,7 @@ useEffect(() => {
 },[authCode])
 
     return (
-      <div>
-      <div>KakaoRedirectPage</div>
-            <div>{authCode}</div>
+      <div> 
         </div>
   )
 }

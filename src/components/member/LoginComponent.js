@@ -1,71 +1,74 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { loginPostAsync } from '../../slices/LoginSlice'
-import { useNavigate } from 'react-router-dom'
-import useCustomLogin from '../../hooks/useCustomLogin'
-import KakaoLoginCompnent from './KakaoLoginCompnent'
+import React, { useState } from 'react';
+import useCustomLogin from '../../hooks/useCustomLogin';
+import KakaoLoginCompnent from './KakaoLoginCompnent';
+import NaverLoginComponent from './NaverLoginComponent';
+import GoogleLoginComponent from './GoogleLoginComponent';
 
 const initState = {
     email: '',
     pw: ''
-}
-
+};
 
 export default function LoginComponent(props) {
-    const [loginParam, setLoginParam] = useState({ ...initState })
-
-    const {doLogin,moveToPath} = useCustomLogin()
+    const [loginParam, setLoginParam] = useState({ ...initState });
+    const { doLogin, moveToPath } = useCustomLogin();
 
     const handleChange = (e) => {
-        loginParam[e.target.name] = e.target.value
+        loginParam[e.target.name] = e.target.value;
+        setLoginParam({ ...loginParam });
+    };
 
-        setLoginParam({ ...loginParam })
-    }
-
-    const handleClickLogin = (e) => {
-
-        doLogin(loginParam).then(data => {
+    const handleClickLogin = () => {
+        doLogin(loginParam).then((data) => {
             if (data.error) {
-                alert(" 틀림 ")
+                alert('로그인 정보가 일치하지 않습니다.');
             } else {
-                moveToPath("/")
-          }
-      })
-
-        // dispatch(login(loginParam))
-    }
-
+                moveToPath('/');
+            }
+        });
+    };
 
     return (
-        <div className="border-2 border-sky-200 mt-10 m-2 p-4">
-            <div className="flex justify-center">
-                <div className="text-4xl m-4 p-4 font-extrabold text-blue-500">Login Component</div>
-            </div>
-            <div className="flex justify-center">
-                <div className="relative mb-4 flex w-full flex-wrap items-stretch">
-                    <div className="w-2/5 p-6 text-right font-bold">Email</div>
-                    <input className="w-3/5 p-6 rounded-r border border-solid border-neutral-500 shadow-md"
-                        name="email" type={'text'} value={loginParam.email} onChange={handleChange}/ >
-                </div>
-            </div>
-            <div className="flex justify-center">
-                <div className="relative mb-4 flex w-full flex-wrap items-stretch">
-                    <div className="w-2/5 p-6 text-right font-bold">Password</div>
-                    <input className="w-3/5 p-6 rounded-r border border-solid border-neutral-500 shadow-md"
-                        name="pw" type={'password'} value={loginParam.pw} onChange={handleChange}/ >
-                </div>
-            </div>
-            <div className="flex justify-center">
-                <div className="relative mb-4 flex w-full justify-center">
-                    <div className="w-2/5 p-6 flex justify-center font-bold">
-                        <button className="rounded p-4 w-36 bg-blue-500 text-xl text-white" onClick={handleClickLogin}>
-                            LOGIN
-                        </button>
+        <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+            <div className="w-full max-w-lg bg-white rounded-lg shadow-lg p-10 space-y-8">
+                <h2 className="text-4xl font-bold text-center text-blue-600">Login</h2>
+                <div className="space-y-6">
+                    <div className="flex items-center">
+                        <label className="w-1/3 text-right font-semibold pr-4 text-lg">Email</label>
+                        <input
+                            className="w-2/3 p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-lg"
+                            name="email"
+                            type="text"
+                            value={loginParam.email}
+                            onChange={handleChange}
+                            placeholder="이메일을 입력하세요"
+                        />
+                    </div>
+                    <div className="flex items-center">
+                        <label className="w-1/3 text-right font-semibold pr-4 text-lg">Password</label>
+                        <input
+                            className="w-2/3 p-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-lg"
+                            name="pw"
+                            type="password"
+                            value={loginParam.pw}
+                            onChange={handleChange}
+                            placeholder="비밀번호를 입력하세요"
+                        />
                     </div>
                 </div>
+                <button
+                    className="w-full py-4 bg-blue-500 text-white font-semibold rounded-lg text-xl hover:bg-blue-600 transition duration-200"
+                    onClick={handleClickLogin}
+                >
+                    LOGIN
+                </button>
+                <div className="text-center text-gray-500">또는</div>
+                <div className="flex justify-center space-x-6 mt-6">
+                    <KakaoLoginCompnent />
+                    <NaverLoginComponent />
+                    <GoogleLoginComponent />
+                </div>
             </div>
-            <KakaoLoginCompnent/>
         </div>
     );
 }
-

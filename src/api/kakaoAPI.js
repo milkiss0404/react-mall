@@ -5,15 +5,14 @@ import { API_SERVER_HOST } from "./todoApi"
 
 
 const rest_api_key = 'edba67a462801cf41ac2447d06e382f2'
-const redirect_uri = 'http://localhost:3000/member/kakao'
+const requestUri = 'http://localhost:8080/oauth2/authorization/kakao'
 
-const auth_code_path = `https://kauth.kakao.com/oauth/authorize`
 
 const access_token_url = 'https://kauth.kakao.com/oauth/token'
 
 export const getKakaoLoginLink = () => {
 
-    const kakaoURL = `${auth_code_path}?client_id=${rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`
+    const kakaoURL = `${requestUri}`
 
     return kakaoURL
 }
@@ -26,7 +25,6 @@ export const getAccess = async (authCode) => {
     const params = {
         grant_type: 'authorization_code',
         client_id: rest_api_key,
-        redirect_uri: redirect_uri,
         code:authCode
     }
 

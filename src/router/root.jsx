@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom"; // require 대신 import로 수정
 import todoRouter from "./todoRouter";
 import productsRouter from "./productsRouter";
-import Spinner from "../spinner/Spinner@1x-1.0s-200px-200px (1).gif"
+import Spinner from "../image/spinner/Spinner@1x-1.0s-200px-200px (1).gif"
 import memberRouter from "./memberRouter";
 
 

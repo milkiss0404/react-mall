@@ -1,6 +1,6 @@
 import React from 'react';
 import { Background, LoadingText } from '../../Styles.js';
-import Spinner from '../../spinner/Spinner@1x-1.0s-200px-200px (1).gif';
+import Spinner from '../../image/spinner/Spinner@1x-1.0s-200px-200px (1).gif';
 
 const FetchingModal = () => {
     return (

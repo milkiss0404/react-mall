@@ -1,3 +1,5 @@
+
+import axios from 'axios';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginPost } from "../api/memberAPI";
 import { getCookie, removeCookie, setCookie} from "../util/cookieUtils";
@@ -6,24 +8,31 @@ const initState = {
     email:''
 }
 
-const loadMemberCookie = () => {
-    const memberInfo = getCookie('member')
+const fetchUserCookie = async () => {
+    try {
+        const response = await axios.get(
+            'http://localhost:8080/getUserCookie',
+            { withCredentials: true }  // 쿠키 포함하여 요청
+        );
+        console.log("서버에서 받은 쿠키 값:", response.data);
+    } catch (error) {
+        console.error("쿠키 값 가져오기 실패", error);
+    }
+};
 
-    return memberInfo
-}
 
 
 export const loginPostAsync = createAsyncThunk('loginPostAsync',(param)=>loginPost(param))
 
 const loginSlice = createSlice({
     name: 'loginSlice',
-    initialState :loadMemberCookie() || initState,
+    initialState: fetchUserCookie() || initState,
     reducers: {
         login: (state, action) => {
             console.log("login.........", action)
             console.log(action.payload)
 
-            setCookie("member",JSON.stringify(action.payload),1)
+            setCookie("member", JSON.stringify(action.payload),1)
 
             return action.payload
 
